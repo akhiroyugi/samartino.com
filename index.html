@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      --gap: 5em;
+      --line: 2px;
+      --color: rgba(255, 255, 255, 0.2);
+      background: #000;
+      background-image: linear-gradient(
+          -90deg,
+          transparent calc(var(--gap) - var(--line)),
+          var(--color) calc(var(--gap) - var(--line) + 1px),
+          var(--color) var(--gap)
+        ),
+        linear-gradient(
+          0deg,
+          transparent calc(var(--gap) - var(--line)),
+          var(--color) calc(var(--gap) - var(--line) + 1px),
+          var(--color) var(--gap)
+        );
+      background-size: var(--gap) var(--gap);
+      min-height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2em;
+      padding: 1em 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      padding: 0.5em 1em;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .navbar a::before,
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(to right, #5f2c82, #49a09d);
+      transition: all 0.4s ease;
+    }
+
+    .navbar a::before {
+      width: 0%;
+      bottom: 0;
+      left: 0;
+    }
+
+    .navbar a::after {
+      width: 0%;
+      top: 0;
+      right: 0;
+    }
+
+    .navbar a:hover::before,
+    .navbar a.active::before {
+      width: 100%;
+    }
+
+    .navbar a:hover::after,
+    .navbar a.active::after {
+      width: 100%;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      color: #ffffff;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5em;
+      color: white;
+      margin: 0 1em;
+      pointer-events: none;
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInTop {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-left {
+      animation: slideInLeft 1s ease-out both;
+    }
+
+    .animate-right {
+      animation: slideInRight 1s ease-out both;
+    }
+
+    .animate-top {
+      animation: slideInTop 1.2s ease-out both;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      max-width: 1000px;
+      width: 90%;
+      margin: 120px auto 60px;
+    }
+
+    .text-section {
+      flex: 1;
+      padding-right: 2em;
+      animation: slideInLeft 1.2s ease-out;
+    }
+
+    .text-section h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      color: white;
+      white-space: pre-line;
+    }
+
+    .text-section p {
+      font-size: 1.2em;
+      max-width: 600px;
+      color: white;
+    }
+
+    .image-section {
+      flex: 1;
+      text-align: center;
+      animation: slideInRight 1.2s ease-out;
+    }
+
+    .image-section img {
+      max-width: 130%;
+      max-height: 500px;
+      border-radius: 20px;
+    }
+
+    section {
+      padding: 100px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+   
+
+   
+
+    .greeting {
+      color: #ffffff;
+    }
+
+    .name {
+      background:linear-gradient(to right, #5c258d, #4389a2); 
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+  
+
+
+
+    .about {
+  padding: 80px 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #f1f1f1;
+}
+
+.container2 {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-container2 {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  border-radius: 20px;
+  position: relative;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.profile-image2 {
+  flex: 0 0 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image2 img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #00f2ff;
+  box-shadow: 0 0 15px #00f2ff;
+}
+
+/* About Content */
+.about {
+  padding: 80px 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #f1f1f1;
+}
+
+.container2 {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-container2 {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  border-radius: 20px;
+  position: relative;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.profile-image2 {
+  flex: 0 0 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image2 img {
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10%;
+  border: 5px solid #4389a2;
+  box-shadow: 0 0 30px rgba(92, 37, 141, 0.6), 0 0 60px rgba(67, 137, 162, 0.6);
+}
+
+/* About Content */
+.about-content {
+  flex: 1;
+}
+
+.about-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.about-content h2 span {
+  color: #00f2ff;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #ccc;
+}
+
+/* Info and Interests Layout */
+.about-content-text {
+  margin-top: 30px;
+}
+
+.info-interests {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Info List */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-items {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.info-items span {
+  font-weight: bold;
+  color: #00f2ff;
+}
+
+/* Interests Section */
+.interests h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.interests-row {
+  display: flex;
+  justify-content: space-between; /* Space them out evenly in one row */
+  gap: 20px;  /* Adjust space between items */
+  margin-top: 15px;
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.interest-item {
+  text-align: center;
+  flex: 0 0 auto;  /* Prevent shrinking/stretching */
+}
+
+.interest-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  transition: transform 0.3s;
+}
+
+.interest-item img:hover {
+  transform: scale(1.1);  /* Zoom effect on hover */
+}
+
+.interest-item p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0;
+  text-align: center;
+}
+
+
+
+
+
+
+/* Skills Section (Unchanged from the original) */
+.skill-container {
+  margin-top: 5rem;
+}
+
+.heading h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.heading h1 span {
+  color: #00f2ff;
+}
+
+/* Skill Bar Container */
+.skill-bar-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.skill-bar {
+  flex: 1;
+}
+
+.skill-bar .row {
+  margin-bottom: 20px;
+}
+
+.skill-bar .row h3 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #f1f1f1;
+}
+
+.progress {
+  height: 10px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(to right, #5c258d, #4389a2); /* Gradient progress bar */
+  width: 0;
+  animation: grow 2s ease forwards;
+}
+
+/* Animations */
+@keyframes grow {
+  from { width: 0; }
+  to { width: var(--progress-width); }
+}
+
+/* Skill Progress Widths */
+.row-1 .progress span { --progress-width: 95%; }
+.row-2 .progress span { --progress-width: 90%; }
+.row-3 .progress span { --progress-width: 85%; }
+.skill-bar-column-2 .row-1 .progress span { --progress-width: 75%; }
+.skill-bar-column-2 .row-2 .progress span { --progress-width: 65%; }
+.skill-bar-column-2 .row-3 .progress span { --progress-width: 60%; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-container2 {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-image2 {
+    margin-bottom: 20px;
+  }
+
+  .counting {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skill-bar-container {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Container for the Image */
+.image-section {
+ 
+ 
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  animation: floatInfinity 6s ease-in-out infinite;
+}
+
+/* Image Styling */
+.image-section img {
+ 
+  object-fit: contain; /* shows the full image */
+ 
+ 
+}
+
+/* Floating Animation */
+@keyframes floatInfinity {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -10px);
+  }
+  50% {
+    transform: translate(0px, -20px);
+  }
+  75% {
+    transform: translate(-10px, -10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+    
+
+
+
+
+.educ {
+    
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+
+
+
+.school {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 300px;
+    padding: 20px;
+
+    transition: transform 0.3s ease;
+    
+}
+
+.school img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-right: 20px;
+   
+    margin: 30px;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.school img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #5c258d) drop-shadow(0 0 20px #4389a2);
+}
+
+
+
+.school-info h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+    color: white;
+}
+
+.school-info p {
+    text-align: center;
+    margin: 5px 0 0;
+    color: white;
+}
+
+
+
+.projects {
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.projects h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card img {
+  width:  auto;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+/* Tooltip Styling */
+.project-card::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: linear-gradient(to right, #5c258d, #4389a2);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 20px;
+  border-radius: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+.contact-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
+.contact-info { flex: 1 1 20rem; margin-right: 20px;}
+    .contact-info h2 { font-size: 1.7rem; color: white; }
+    .contact-info p { margin: 0.5rem 0 1rem; text-align: justify; }
+.contact-form { flex: 1 1 20rem; display: flex; justify-content: center; }
+    .contact-form form { display: flex; flex-direction: column; width: 100%; }
+        form input, textarea {
+            width: 100%;
+            padding: 17px;
+            border-radius: .5rem;
+            outline: none;
+            margin-bottom: 1rem;
+            border: 2px solid white;
+            box-shadow: 0 4px 4px 2px rgba(95, 133, 132, 0.15);
+        }
+            form input::placeholder, textarea::placeholder { color: black }
+            form textarea { height: 150px; resize: none; }
+
+        form .btn {
+            max-width: 150px;
+            background: var(--main-color);
+            color: #FFF;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: solid white 2px;
+            transition: .3s;
+            margin: auto;
+            cursor: pointer;
+        }
+            form .btn:hover { background: white; color: #000; }
+.address { display: flex; flex-direction: column; }
+    .address i { display: flex; align-items: center; margin-bottom: 0.5rem; font-size: 20px; }
+    .address span { font-size: 10px; margin-left: 1rem; }
+.social { margin-top: 1rem; color: white;}
+    .social a { font-size: 24px; color: white; margin-right: 1rem; transition: .3s; }
+        .social a:hover { color: white; }
+       .address {
+        color: white;
+       } 
+       
+
+
+
+    .contact-info h2 { font-size: 1.6rem; }
+    
+
+
+
+    @keyframes appear {
+        from{
+            opacity:0;
+            scale: 0.4;
+        }
+        to{
+        opacity:1;
+        scale: 1;
+        }
+    }
+      
+   
+
+
+.container,
+.text-section,
+
+.about-container2,
+.profile-image2,
+.about-content,
+.educ,
+.school,
+.school-info,
+.skill-container,
+.heading,
+.skill-bar-container,
+.skill-bar,
+.row,
+.projects,
+.projects-container,
+.project-card,
+.contact,
+.contact-container,
+.contact-info,
+.contact-form{
+  animation: appear linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+
+
+/* From Uiverse.io by Web-Potato */ 
+button {
+  padding: 0.1em 0.25em;
+  width: 13em;
+  height: 4.2em;
+  background-color: #212121;
+  border: 0.08em solid #fff;
+  border-radius: 0.3em;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button span {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0.4em;
+  width: 8.25em;
+  height: 2.5em;
+  background-color: #212121;
+  border-radius: 0.2em;
+  font-size: 1.5em;
+  color: #fff;
+  border: 0.08em solid #fff;
+  box-shadow: 0 0.4em 0.1em 0.019em #fff;
+}
+
+button span:hover {
+  transition: all 0.5s;
+  transform: translate(0, 0.4em);
+  box-shadow: 0 0 0 0 #fff;
+}
+
+.btns span:not(hover) {
+  transition: all 1s;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .text-section {
+    order: 2;
+  }
+
+  .image-section img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .about-container2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-image2 img {
+    width: 80%;
+    max-width: 250px;
+    margin-bottom: 20px;
+  }
+
+  .info-interests {
+    flex-direction: column;
+  }
+
+  .interests-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .interest-item {
+    flex: 1 1 40%;
+    margin: 10px;
+  }
+
+  .projects-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-info,
+  .contact-form {
+    width: 90%;
+  }
+}
+
+/* Responsive for Phones (480px and below) */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    font-size: 16px;
+  }
+
+  .logo {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+
+  .text-section h1 {
+    font-size: 24px;
+  }
+
+  .text-section p {
+    font-size: 18px;
+  }
+
+  .skill-bar-container {
+    flex-direction: column;
+  }
+
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .school {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .school img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .address i {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#home" class="nav-link animate-left">Home</a>
+    <a href="#about" class="nav-link animate-left" style="animation-delay: 0.2s;">About</a>
+    <div class="logo animate-top">AKHIRO</div>
+    <a href="#projects" class="nav-link animate-right" style="animation-delay: 0.2s;">Projects</a>
+    <a href="#contact" class="nav-link animate-right">Contact</a>
+  </nav>
+
+  <div id="home" class="container">
+    <div class="text-section">
+      <h1><span id="greeting" class="greeting"></span><br/><span class="name" id="name"></span></h1>
+      <p style="font-size: 30px;">Aspiring Web Developer From Philippines</p>
+      <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' }) "><span>Portfolio</span></button>
+    </div>
+    <div class="image-section">
+      <img src="C:\Users\requirme  family\Desktop\Portfolio\image\1000001220.png" alt="Your Photo" />
+    </div>
+  </div>
+
+  
+  <section class="about" id="about">
+    <div class="container2">
+      <div class="about-container2">
+  
+        <!-- Profile Picture -->
+        <div class="profile-image2">
+          <img src="C:\Users\requirme  family\Desktop\Portfolio\image\1000001241.jpg" alt="Profile Picture" loading="lazy">
+        </div>
+  
+        <!-- About Content -->
+        <div class="about-content">
+            <h2>ABOUT<span> ME</span>.</h2>
+            <p>I am a BSIT Studentnt and i'am 18 years old with a deep passion for information technology. I am fascinated by how technology is changing our lives and committed to being part of that change.</p>
+          
+            <div class="about-content-text">
+              <div class="info-interests">
+          
+                <!-- Left: Personal Info -->
+                <div class="info">
+                  <ul class="info-list">
+                    <li class="info-items"><span>Age:</span> 18</li>
+                    <li class="info-items"><span>Birthdate:</span> August 21, 2006</li>
+                    <li class="info-items"><span>Gender:</span> Male</li>
+                    <li class="info-items"><span>Nationality:</span> Filipino</li>
+                    <li class="info-items"><span>Status:</span> Single</li>
+                  </ul>
+                </div>
+          
+                <!-- Right: Interests -->
+                <div class="interests">
+                    <h3 class="int">Interests</h3>
+                    <div class="interests-row">
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/controller.png" alt="Games">
+                        <p>Games</p>
+                      </div>
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/musical-notes.png" alt="Music">
+                        <p>Music</p>
+                      </div>
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/movie-projector.png" alt="Movies">
+                        <p>Movies</p>
+                      </div>
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/source-code.png" alt="Coding">
+                        <p>Coding</p>
+                      </div>
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/open-book--v2.png" alt="Reading">
+                        <p>Reading</p>
+                      </div>
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/chef-hat.png" alt="Cooking">
+                        <p>Cooking</p>
+                      </div>
+                      <div class="interest-item">
+                        <img src="https://img.icons8.com/color/96/color-palette.png" alt="Drawing">
+                        <p>Drawing</p>
+                      </div>
+                    </div>
+                  </div>
+            
+                </div>
+              </div>
+            </div>
+            </div>
+            <h1 style=" text-align: center;
+            margin-bottom: 40px;
+            color: white; font-size: 30px; margin: 10px;">My Educational Background</h1>
+            <div class="educ">
+            <div class="school">
+                
+                <img src="C:\Users\requirme  family\Desktop\Portfolio\image\1000001248.png" alt="Elementary School Logo">
+                <div class="school-info">
+                    <h2> Rosario Elementary School</h2>
+                    <p>Years Attended: 2013 - 2019</p>
+                </div>
+            </div>
+        
+            <div class="school">
+                <img src="C:\Users\requirme  family\Desktop\Portfolio\image\1000001254.png" alt="High School Logo">
+                <div class="school-info">
+                    <h2>Eusebio High School</h2>
+                    <p>Years Attended: 2019 - 2023</p>
+                </div>
+            </div>
+        
+            <div class="school">
+                <img src="C:\Users\requirme  family\Desktop\Portfolio\image\1000001246.png" alt="College Logo">
+                <div class="school-info">
+                    <h2>Rizal High School - ICT Strand</h2>
+                    
+                    <p>Years Attended: 2023- - 2024</p>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+      <!-- Skills Section (Unchanged) -->
+      <div class="skill-container">
+        <div class="heading">
+          <h1>My <span>Skills</span></h1>
+        </div>
+        <div class="skill-bar-container">
+          <div class="skill-bar skill-bar-column-1">
+            <div class="row row-1">
+              <h3>HTML <span>95%</span></h3>
+              <div class="progress"><span></span></div>
+            </div>
+            <div class="row row-2">
+              <h3>CSS <span>90%</span></h3>
+              <div class="progress"><span></span></div>
+            </div>
+            <div class="row row-3">
+              <h3>Javascript <span>85%</span></h3>
+              <div class="progress"><span></span></div>
+            </div>
+          </div>
+  
+          <div class="skill-bar skill-bar-column-2">
+            <div class="row row-1">
+              <h3>JAVA <span>75%</span></h3>
+              <div class="progress"><span></span></div>
+            </div>
+            <div class="row row-2">
+              <h3>C# <span>65%</span></h3>
+              <div class="progress"><span></span></div>
+            </div>
+            <div class="row row-3">
+              <h3>MySql <span>60%</span></h3>
+              <div class="progress"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+      
+  </section>
+
+  <section class="projects" id="projects">
+    <h1>My Projects</h1>
+  
+    <div class="projects-container">
+      <div class="project-card" data-title="Remedial System of Rizal">
+        <img src="C:\Users\requirme  family\Desktop\Portfolio\image\Screenshot (57) - Copy.png" alt="Project 1">
+      </div>
+  
+      <div class="project-card" data-title="Calculator">
+        <img src="C:\Users\requirme  family\Desktop\Portfolio\image\maxresdefault (2).jpg" alt="Project 2">
+      </div>
+  
+      <div class="project-card" data-title="Login Form design">
+        <img src="C:\Users\requirme  family\Desktop\Portfolio\image\form-login-popup.jpg" alt="Project 3">
+      </div>
+  
+      <div class="project-card" data-title="Quiz Time">
+        <img src="C:\Users\requirme  family\Desktop\Portfolio\image\Simple-Quiz.jpg" alt="Project 4">
+      </div>
+  
+      <div class="project-card" data-title="Coffee Shop Landing Page">
+        <img src="C:\Users\requirme  family\Desktop\Portfolio\image\coffee-landing-page-template_23-2148615757.jpg" alt="Project 5">
+      </div>
+  
+      <div class="project-card" data-title="Whack a Dinoss">
+        <img src="C:\Users\requirme  family\Desktop\Portfolio\image\5e1ae21097dc5eda47178456c380d877.jpg" alt="Project 6">
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="heading">
+        <h2 style="color: white; text-align: center; font-size: 40px;">Contact Me</h2>
+        <p style="color: white; text-align: center; font-size: 20px; margin-bottom: 40px;">I love to hear from you!</p>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p style="color: white; font-size: 16px;">I always here to help you with your healthy food needs. Whether you have a question, feedback, or just want to say hello,I'm here to assist you. Please use the form below to get in touch with me, or find me on social media for the latest updates</p>
+            <div class="address">
+                <i class="fa-solid fa-location-dot"><span>13 JD Cruz ROTC st. Rosario Pasig City</span></i>
+                <i class="fa-solid fa-phone"><span>09911255855</span></i>
+                <i class="fa-solid fa-square-envelope"><span>akhiroyugi@gmail.com</span></i>
+            </div>
+
+            <div class="social">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></i></a>
+                <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <form action="">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Write your Message"></textarea>
+                <input type="button" value="Submit" class="btn">
+            </form>
+        </div>
+    </div>
+</section>
+
+  <script>
+    const greetingEl = document.getElementById('greeting');
+    const nameEl = document.getElementById('name');
+    const hour = new Date().getHours();
+    let greetingText = 'Welcome';
+    if (hour < 12) greetingText = 'Good Morning,';
+    else if (hour < 18) greetingText = 'Good Afternoon,';
+    else greetingText = 'Good Evening,';
+    const fullText = `${greetingText}I'm Akhiro Samartino!`;
+    let index = 0;
+
+    function typeWriter() {
+      if (index < fullText.length) {
+        if (index < greetingText.length) {
+          greetingEl.textContent += fullText.charAt(index);
+        } else {
+          nameEl.textContent += fullText.charAt(index);
+        }
+        index++;
+        setTimeout(typeWriter, 80);
+      }
+    }
+    typeWriter();
+
+    const sections = document.querySelectorAll('section, .container');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
